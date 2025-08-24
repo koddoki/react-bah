@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Deploy to Server
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+            set -e
+
+            # Atualizar código
+            cd ~/react-bah || git clone https://github.com/koddoki/react-bah.git ~/react-bah && cd ~/react-bah
+            git fetch origin main
+            git reset --hard origin/main
+
+            # Instalar dependências e buildar
+            npm ci
+            npm run build
+
+            # Restart app
+            pm2 restart next-app || pm2 start npm --name next-app -- run start
+          "
