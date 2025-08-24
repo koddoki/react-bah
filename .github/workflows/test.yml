@@ -22,15 +22,25 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             set -e
 
+            APP_DIR=/opt/react-bah
+
+            # Criar pasta se não existir e garantir permissões
+            sudo mkdir -p \$APP_DIR
+            sudo chown -R ${{ secrets.SSH_USER }}:$${{ secrets.SSH_USER }} \$APP_DIR
+
             # Atualizar código
-            cd ~/react-bah || git clone https://github.com/koddoki/react-bah.git ~/react-bah && cd ~/react-bah
+            cd \$APP_DIR || exit
+            if [ ! -d .git ]; then
+              git clone https://github.com/koddoki/react-bah.git \$APP_DIR
+            fi
             git fetch origin main
             git reset --hard origin/main
 
-            # Instalar dependências e buildar
+            # Instalar dependências e build
             npm ci
             npm run build
 
-            # Restart app
-            pm2 restart next-app || pm2 start npm --name next-app -- run start
+            # Rodar/reiniciar com PM2
+            pm2 restart next-app || sudo pm2 start npm --name next-app -- run start
+            pm2 save
           "
