@@ -41,6 +41,6 @@ jobs:
             npm run build
 
             # Rodar/reiniciar com PM2
-            pm2 restart next-app || sudo pm2 start npm --name next-app -- run start
-            pm2 save
+            sudo pm2 restart next-app || sudo pm2 start npm --name next-app -- run start
+            sudo pm2 save
           "
