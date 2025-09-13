@@ -5,9 +5,6 @@ type CarouselNavigationProps = {
   startIndex: number;
   onPrev: () => void;
   onNext: () => void;
-  canGoPrev: boolean;
-  canGoNext: boolean;
-  visibleItems: number;
 };
 
 export function CarouselNavigation({
@@ -15,20 +12,13 @@ export function CarouselNavigation({
   startIndex,
   onPrev,
   onNext,
-  canGoPrev,
-  canGoNext,
-  visibleItems,
 }: CarouselNavigationProps) {
   return (
     <div className="flex items-center gap-2 mt-2">
-      <NavButton onClick={onPrev} enabled={canGoPrev} label="←" />
-      <Indicators
-        totalItems={items.length}
-        visibleItems={visibleItems}
-        activeIndex={startIndex}
-      />
+      <NavButton onClick={onPrev} enabled={true} label="←" />
+      <Indicators totalItems={items.length} activeIndex={startIndex} />
 
-      <NavButton onClick={onNext} enabled={canGoNext} label="→" />
+      <NavButton onClick={onNext} enabled={true} label="→" />
     </div>
   );
 }
@@ -57,14 +47,12 @@ function NavButton({
 
 function Indicators({
   totalItems,
-  visibleItems,
   activeIndex,
 }: {
   totalItems: number;
-  visibleItems: number;
   activeIndex: number;
 }) {
-  const totalPages = Math.max(1, totalItems - visibleItems + 1); // cada passo possível
+  const totalPages = Math.max(1, totalItems);
   const indicators = Array.from({ length: totalPages });
 
   return (
