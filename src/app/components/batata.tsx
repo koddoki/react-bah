@@ -20,7 +20,7 @@ export default function Batata() {
     <div className="h-screen flex flex-col">
       <Header />
 
-      <main className="flex-1 overflow-y-scroll snap-y snap-mandatory">
+      <main className="flex-1 overflow-y-scroll snap-y snap-mandatory scroll-smooth">
         <section className="h-[90vh] snap-start">
           <ImageOverlay src="/images/pathfinder.png" alt="Example">
             <div className="size-4 pl-20 pt-20">
@@ -34,16 +34,16 @@ export default function Batata() {
         </section>
 
         <section className="h-[90vh] pt-20 snap-start bg-red-400 w-full">
-          <span className="text-2xl pl-20 mt-20 pt-20">Figuras Relevantes</span>
+          <span className="text-2xl pl-20">Figuras Relevantes</span>
           <Carousel items={carouselItems} visibleItems={3} />
         </section>
 
         <section className="h-[90vh] pt-20 snap-start bg-blue-400 w-full">
-          <span className="text-2xl pl-20 mt-20">Localizações foda</span>
+          <span className="text-2xl pl-20">Localizações foda</span>
           <Carousel items={carouselItems} visibleItems={3} />
         </section>
-        <section className="h-[90vh] pt-20 snap-start bg-red-400 w-full">
-          <span className="text-2xl pl-20 mt-20">Drak Puta</span>
+        <section className="h-[100vh] pt-20 snap-start bg-red-400 w-full">
+          <span className="text-2xl pl-20">Drak Puta</span>
           <Carousel items={carouselItems} visibleItems={3} />
         </section>
       </main>
