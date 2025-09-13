@@ -1,10 +1,46 @@
-import Image from "next/image";
+"use client";
+
+import { Button } from "./ui/buttons/Button";
+import { LinkButton } from "./ui/buttons/LinkButton";
+import { Carousel } from "./ui/utils/Carousel/Carousel";
+import { ImageOverlay } from "./ui/utils/ImageOverlay";
 
 export default function Batata() {
+  const carouselItems = [
+    {
+      title: "Pullas",
+      text: "Participe de uma jornada cheia de desafios.",
+    },
+    {
+      title: "Fiore",
+      text: "Customize cada detalhe do seu herói.",
+    },
+    {
+      title: "Blair",
+      text: "Combata monstros e vença chefes épicos.",
+    },
+    {
+      title: "Yorm",
+      text: "Participe de uma jornada cheia de desafios.",
+    },
+    {
+      title: "Mashi",
+      text: "Mente muito.",
+    },
+    {
+      title: "Alastor",
+      text: "Combata monstros e vença chefes épicos.",
+    },
+    {
+      title: "Hao Maru",
+      text: "Combata monstros e vença chefes épicos.",
+    },
+  ];
+
   return (
     <div>
-      <ImageOverlay src="/images/home-wallpaper.jpg" alt="Example">
-        <Header></Header>
+      <ImageOverlay src="/images/pathfinder.png" alt="Example">
+        <Header />
         <div className="size-4 pl-20 pt-20">
           <h1 className="text-white text-4xl font-bold">RPG da Galera</h1>
           <div className="flex gap-4 py-4">
@@ -13,78 +49,16 @@ export default function Batata() {
           </div>
         </div>
       </ImageOverlay>
-      <div className="bg-red-400 h-96 w-full">
-        <div>{"bah, pudim oia só como funfa bem"}</div>
+      <div className="bg-red-400 w-full">
+        <Carousel items={carouselItems} visibleItems={3} />
       </div>
     </div>
   );
 }
 
-interface ImageOverlayProps {
-  src: string;
-  alt: string;
-  children: React.ReactNode;
-  className?: string; // opcional para customizações extras
-}
-
-export function ImageOverlay({
-  src,
-  alt,
-  children,
-  className = "",
-}: ImageOverlayProps) {
-  return (
-    <div className={`relative w-full h-[600px] ${className}`}>
-      <Image src={src} alt={alt} fill className="object-cover" />
-      <div className="absolute inset-0">{children}</div>
-    </div>
-  );
-}
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-  variant?: "primary" | "subtle" | "ghost";
-  size?: "sm" | "md" | "lg"; // opcional para tamanhos diferentes
-}
-
-export function Button({
-  children,
-  variant = "primary",
-  size = "md",
-  className = "",
-  ...props
-}: ButtonProps) {
-  const base =
-    "flex-shrink-0 overflow-hidden text-ellipsis whitespace-nowrap font-medium rounded transition-all focus:outline-none focus:ring-2 focus:ring-offset-1";
-
-  const variants = {
-    primary:
-      "bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50",
-    subtle:
-      "bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-300 disabled:opacity-50",
-    ghost:
-      "bg-transparent text-white text-bold hover:bg-blue-50 active:bg-blue-100 disabled:opacity-50",
-  };
-
-  const sizes = {
-    sm: "w-[80px] h-8 py-1 px-3 text-sm",
-    md: "w-[120px] h-10 py-2 px-4 text-base",
-    lg: "w-[160px] h-12 py-3 px-6 text-lg",
-  };
-
-  return (
-    <button
-      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-}
-
 export function Header() {
   return (
-    <header className="flex items-center justify-between px-8 py-4">
+    <header className="flex items-center justify-between px-8 pt-8">
       <div className="text-2xl font-bold">RPG da Galera</div>
 
       <div className="flex gap-4">
@@ -94,9 +68,9 @@ export function Header() {
         <Button variant="ghost" size="sm">
           Configurações
         </Button>
-        <Button variant="ghost" size="sm">
-          Sair
-        </Button>
+        <LinkButton variant="ghost" size="sm" href="http://rpgdagalera.com.br">
+          Foundry
+        </LinkButton>
       </div>
     </header>
   );
