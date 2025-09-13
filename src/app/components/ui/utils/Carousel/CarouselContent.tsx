@@ -6,9 +6,10 @@ export function CarouselContent({ items }: { items: CarouselItem[] }) {
       {items.map((item, index) => (
         <div
           key={index}
-          className="w-72 bg-red-500 rounded-2xl shadow-md flex flex-col items-center justify-center text-center p-6"
+          className="w-72 h-96 bg-red-500 rounded-2xl shadow-md flex flex-col items-center justify-center text-center p-6"
         >
-          <h2 className="text-xl font-bold mb-2">{item.title}</h2>
+          <div className="size-50 bg-amber-300 rounded-full"></div>
+          <h2 className="pt-2 text-xl font-bold mb-2">{item.title}</h2>
           <p className="text-white-600">{item.text}</p>
         </div>
       ))}

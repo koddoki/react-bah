@@ -14,7 +14,7 @@ export function ImageOverlay({
   className = "",
 }: ImageOverlayProps) {
   return (
-    <div className={`relative w-full h-[600px] ${className}`}>
+    <div className={`relative w-full h-full ${className}`}>
       <Image src={src} alt={alt} fill className="object-cover" />
       <div className="absolute inset-0">{children}</div>
     </div>
