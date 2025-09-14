@@ -33,16 +33,16 @@ export default function Batata() {
           </ImageOverlay>
         </section>
 
-        <section className="h-[90vh] pt-20 snap-start bg-red-400 w-full">
+        <section className="h-[90vh] pt-[10vh] snap-start bg-red-400 w-full">
           <span className="text-2xl pl-20">Figuras Relevantes</span>
           <Carousel items={carouselItems} />
         </section>
 
-        <section className="h-[90vh] pt-20 snap-start bg-blue-400 w-full">
+        <section className="h-[90vh] pt-[10vh] snap-start bg-blue-400 w-full">
           <span className="text-2xl pl-20">Localizações foda</span>
           <Carousel items={carouselItems} />
         </section>
-        <section className="h-[100vh] pt-20 snap-start bg-red-400 w-full">
+        <section className="h-[100vh] pt-[10vh] snap-start bg-red-400 w-full">
           <span className="text-2xl pl-20">Drak Puta</span>
           <Carousel items={carouselItems} />
         </section>

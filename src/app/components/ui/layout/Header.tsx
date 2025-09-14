@@ -3,7 +3,7 @@ import { LinkButton } from "../buttons/LinkButton";
 
 export function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full bg-transparent text-white flex items-center justify-between px-8 py-4 z-10">
+    <header className="fixed top-0 left-0 w-full bg-transparent text-white flex items-center justify-between h-[10vh] px-8 py-4 z-10">
       <div className="text-2xl font-bold">RPG da Galera</div>
 
       <div className="flex gap-4">
